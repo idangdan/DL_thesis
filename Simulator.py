@@ -23,13 +23,13 @@ class Simulator(nn.Module):
             nn.LeakyReLU(0.2),
             nn.Conv2d(in_channels=128, out_channels=256, kernel_size=9),
             nn.LeakyReLU(0.2),
-            View(-1))
+            View(-1),
         #DONE: do pytorch flatten and concatanate blocks
 
         #self.block1.reshape(-1)
 
-        self.block2 = nn.Sequential(
-            nn.Linear(16384, 4608),
+        #self.block2 = nn.Sequential(
+            nn.Linear(65536, 4608),
             View(-1),
             nn.Linear(4608, 256),
             View(-1),
@@ -41,7 +41,7 @@ class Simulator(nn.Module):
         output = self.block1(input)
         #output = output.view(output.shape[0], -1)
         #output = output.view(-1, 256 * 8 * 8)
-        output = self.block2(output)
+        #output = self.block2(output)
         return output
 
 '''
